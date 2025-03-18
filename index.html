@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Summarizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-purple-800 min-h-screen flex justify-center items-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg text-center">
+        <h1 class="text-3xl font-extrabold text-gray-800">🎥 AI Video Summarizer</h1>
+        <p class="text-gray-600 mt-2">Get a structured summary of any YouTube video instantly!</p>
+
+        <!-- Input Form -->
+        <form id="uploadForm" action="/summarize" method="post" class="mt-6 space-y-4">
+            
+            <label class="block text-left">
+                <span class="text-gray-700 font-semibold">🎬 YouTube Video Link:</span>
+                <input type="url" name="video_url" id="video_url" required
+                    class="w-full mt-2 p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="https://www.youtube.com/watch?v=xyz">
+            </label>
+
+            <button type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300">
+                📑 Generate Summary
+            </button>
+        </form>
+
+        <!-- Loading Spinner (Hidden Initially) -->
+        <div id="loading" class="mt-6 text-center hidden">
+            <svg class="animate-spin h-10 w-10 text-blue-600 mx-auto" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0116 0"></path>
+            </svg>
+            <p class="mt-2 text-gray-700 font-medium">⏳ Summarizing video... Please wait.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function() {
+            document.getElementById("loading").classList.remove("hidden");
+        });
+    </script>
+
+</body>
+</html>

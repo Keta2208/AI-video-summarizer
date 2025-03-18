@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 🌟 Light Mode Styles */
+        .light-mode {
+            background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+            /* Soft pink to light purple */
+            color: #1f2937;
+            /* Dark gray text */
+        }
+
+        .light-mode .glass {
+            background: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent white */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* 🌙 Dark Mode Styles */
+        .dark-mode {
+            background: linear-gradient(to bottom right, #111827, #1f2937);
+            /* Deep blue-gray */
+            color: #e5e7eb;
+            /* Light gray text */
+        }
+
+        .dark-mode .glass {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ✨ Glassmorphism Effect */
+        .glass {
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* 🎭 Smooth Transition for Mode Change */
+        body {
+            transition: background 0.5s ease-in-out, color 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="light-mode min-h-screen flex items-center justify-center p-6 transition-all duration-300">
+
+    <div class="max-w-4xl w-full glass shadow-xl">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold flex items-center">
+                📖 <span class="ml-2">Video Summary</span>
+            </h1>
+            <button id="darkModeToggle" class="p-2 bg-gray-700 rounded-lg text-white hover:bg-gray-600 transition-all">
+                🌙 / ☀️
+            </button>
+        </div>
+
+        <!-- Summary Content -->
+        <div id="summary-container" class="space-y-6">
+            {{ summary | safe }}
+        </div>
+
+        <!-- Back Button -->
+        <div class="mt-6 text-center">
+            <a href="/" class="px-4 py-2 bg-blue-500 rounded-lg text-white hover:bg-blue-600 transition-all">🔙 Back</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const glass = document.querySelector(".glass");
+
+            // Toggle dark mode class
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+
+            // Save preference in local storage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Check user preference on page load
+        window.onload = function () {
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+            }
+        };
+
+        // Event listener for the dark mode button
+        document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+    </script>
+
+</body>
+
+</html>
