@@ -7,7 +7,6 @@ import os
 import spacy
 from concurrent.futures import ThreadPoolExecutor
 import re
-from waitress import serve  # Import Waitress for production use
 
 # ✅ Load spaCy NLP Model for better sentence segmentation
 nlp = spacy.load("en_core_web_sm")
@@ -154,8 +153,6 @@ def summarize():
     return render_template('summary.html', summary=summary)
 
 # ✅ Run Flask App
-
-
 if __name__ == '__main__':
-    from waitress import serve
-    serve(app, host="0.0.0.0", port=8080)  # Use Waitress for production deployment
+    
+    app.run(debug=False, host="127.0.0.1", port=5001)
