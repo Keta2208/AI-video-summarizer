@@ -49,6 +49,51 @@ source venv/bin/activate  # For Linux/macOS
 venv\Scripts\activate  # For Windows
 ```
 
+### 3. Install Dependencies
+Install the required libraries using pip:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Download spaCy Model
+Download the spaCy language model en_core_web_sm:
+
+```bash
+python -m spacy download en_core_web_sm
+```
+
+### 🚀 Running the Project Locally
+Once the setup is complete, you can run the application locally using Flask:
+
+```bash
+python app_advanced.py
+```
+Your app should now be accessible at http://127.0.0.1:5001/ in your web browser.
+
+
+### 📑 How It Works
+Transcription: The app extracts the transcript from YouTube videos using youtube-transcript-api or transcribes uploaded videos using Whisper.
+Text Segmentation: We use spaCy for better segmentation of the transcript into sentences and sections.
+Summarization: The app uses the T5 model for generating summaries of video content.
+Classification: The app classifies the video into categories like Motivational, Educational, Business, and more using the Zero-Shot Classification model.
+
+### 🎨 UI Design
+The user interface is designed with Tailwind CSS for a responsive and modern look. It features:
+
+Dark/Light Mode Toggle: Easily switch between light and dark modes for a better user experience.
+Collapsible Sections: Summary sections are collapsible for easier navigation.
+Attractive Layout: A minimalist and clean layout with a glassmorphism effect for a sleek design.
+
+### 🔧 Built With
+Flask: For building the web application.
+spaCy: For text processing and NLP tasks.
+Transformers: For powerful text summarization using T5.
+Whisper: For transcribing audio to text.
+YouTube Transcript API: For fetching YouTube video transcripts.
+Pytube: For interacting with YouTube videos.
+
+### Thank you for checking out the AI Video Summarizer! 🚀🎬
 
 
 
