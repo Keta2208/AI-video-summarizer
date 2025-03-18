@@ -10,3 +10,4 @@ pandas==2.2.3
 requests==2.32.3
 tqdm==4.67.1
 waitress==3.0.0
+en-core-web-sm==3.0.0
